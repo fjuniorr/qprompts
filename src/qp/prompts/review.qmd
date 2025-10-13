@@ -3,17 +3,25 @@ title: Review pull request
 description: Review pull request
 engine: knitr
 params:
-    pr: ""
+    pr_number: ""
+    pr_url: ""
     repo: "Ficks-Music/ficks"
 ---
-## Pull request PR#`r params$pr`
+```{r setup}
+#| echo: false
+Sys.setenv(PR_URL = params$pr_url)
+```
+
+## Pull request PR#`r params$pr_number`
 
 ```{bash}
-gh pr view {{PR_URL}}
+#| echo: false
+gh pr view "$PR_URL"
 ```
 
 ```{bash}
-gh pr view --comments {{PR_URL}}
+#| echo: false
+gh pr view --comments "$PR_URL"
 ```
 
 ## Task

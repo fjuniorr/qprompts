@@ -50,13 +50,15 @@ def review(
 
     pr_ref = parse_pr_reference(pr, repo)
 
-    params = {"pr": pr_ref.number, "repo": pr_ref.repo}
-    replacements = {"PR_URL": pr_ref.url}
+    params = {
+        "pr_number": pr_ref.number,
+        "pr_url": pr_ref.url,
+        "repo": pr_ref.repo,
+    }
 
     render_prompt_template(
         "review.qmd",
         params=params,
-        replacements=replacements,
         fmt=to,
         output=output,
     )
@@ -160,4 +162,3 @@ def build_cli(parent: typer.Typer, directory: Path) -> bool:
 
 
 build_cli(app, PROMPTS_DIR)
-

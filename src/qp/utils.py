@@ -48,7 +48,11 @@ def load_prompt_metadata(file_path: Path) -> Dict[str, Any]:
         if isinstance(param_value, dict):
             default_value = param_value.get("value", param_value.get("default"))
             help_text = param_value.get("description") or param_value.get("help")
-            if default_value is None and "value" not in param_value and "default" not in param_value:
+            if (
+                default_value is None
+                and "value" not in param_value
+                and "default" not in param_value
+            ):
                 default_value = param_value
 
         parsed_params[param_name] = {"default": default_value, "help": help_text}
@@ -97,6 +101,7 @@ def render_quarto(
         "quarto",
         "render",
         str(file_path),
+        "--quiet",
         "--to",
         fmt,
         "--output",
@@ -132,12 +137,11 @@ def render_prompt_template(
     prompt_name: str,
     *,
     params: Optional[Dict[str, Any]] = None,
-    replacements: Optional[Dict[str, str]] = None,
     fmt: str = DEFAULT_FORMAT,
     output: str = DEFAULT_OUTPUT,
     prompts_dir: Path = PROMPTS_DIR,
 ) -> None:
-    """Load a prompt, apply replacements, and render it with Quarto."""
+    """Load a prompt, merge params, and render it with Quarto."""
 
     prompt_path = prompts_dir / prompt_name
     if not prompt_path.exists():
@@ -155,13 +159,7 @@ def render_prompt_template(
         param_section = metadata.setdefault("params", {})
         param_section.update(params)
 
-    content = post.content
-    if replacements:
-        for key, value in replacements.items():
-            content = content.replace(f"{{{{{key}}}}}", value)
-
     post.metadata = metadata
-    post.content = content
 
     with tempfile.NamedTemporaryFile(
         "w", suffix=prompt_path.suffix, delete=False, encoding="utf-8"
@@ -202,7 +200,9 @@ def parse_pr_reference(reference: str, default_repo: str) -> PullRequestReferenc
             repo = default_repo
         number = number_part.strip().lstrip("#")
         if not number:
-            raise typer.BadParameter("Missing pull request number after '#'.", param_hint="--pr")
+            raise typer.BadParameter(
+                "Missing pull request number after '#'.", param_hint="--pr"
+            )
         return PullRequestReference(repo=repo, number=number)
 
     digits = value.lstrip("#")
