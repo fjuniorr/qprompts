@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=65"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "prompts"
 version = "0.0.0-9001"
@@ -6,3 +10,6 @@ readme = "README.md"
 dependencies = ['typer', 'python-frontmatter']
 [project.scripts]
 qp = "qp.cli:app"
+
+[tool.setuptools.package-data]
+"qp.prompts" = ["*.qmd"]

@@ -12,7 +12,8 @@ import frontmatter
 import typer
 
 
-PROMPTS_DIR = Path("prompts")
+PACKAGE_ROOT = Path(__file__).resolve().parent
+PROMPTS_DIR = PACKAGE_ROOT / "prompts"
 DEFAULT_FORMAT = "commonmark"
 DEFAULT_OUTPUT = "-"
 RESERVED_PROMPTS = {"review"}
@@ -226,4 +227,3 @@ __all__ = [
     "render_prompt_template",
     "render_quarto",
 ]
-
