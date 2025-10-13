@@ -1,0 +1,2 @@
+[console_scripts]
+qp = qp.cli:app

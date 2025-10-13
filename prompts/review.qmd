@@ -1,0 +1,21 @@
+---
+title: Review pull request
+description: Review pull request
+engine: knitr
+params:
+    pr: ""
+    repo: "Ficks-Music/ficks"
+---
+## Pull request PR#`r params$pr`
+
+```{bash}
+gh pr view {{PR_URL}}
+```
+
+```{bash}
+gh pr view --comments {{PR_URL}}
+```
+
+## Task
+
+What is the most relevant insight for this pull request?
