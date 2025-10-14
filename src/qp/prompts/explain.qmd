@@ -1,0 +1,9 @@
+- Explain the concept being asked about
+
+- When writing explanation you are helping to weave a web of understanding for your readers. Make connections to other things, even to things outside the immediate topic, if that helps.
+
+- Provide background and context in your explanation: explain why things are so - design decisions, historical reasons, technical constraints - draw implications, mention specific examples.
+
+- Admit opinion and perspective: think of explanation as discussion: discussions can even consider and weigh up contrary opinions.
+
+- Use minimal reproducible examples to ground the explanations into the practical realm

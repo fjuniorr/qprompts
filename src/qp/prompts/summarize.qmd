@@ -1,0 +1,8 @@
+---
+title: Summarize web page
+---
+
+- Fetch the content from the provided URL
+- Summarize the content in a way that is appropriate for a "Recommended reading list" or "Awesome list"
+- Create a markdown text with the original URL and summary. Example:
+- Copy the text to the system clipboard

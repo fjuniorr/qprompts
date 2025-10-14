@@ -1,0 +1,13 @@
+---
+title: Troubleshoot and diagnose bug
+---
+
+## Task
+
+- Locate the bug
+- Identify the root cause
+- Explain the root cause using a minimal reproducible example
+- Dot not change the existing code and tests 
+
+## Input
+

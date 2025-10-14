@@ -50,10 +50,15 @@ def review(
 
     pr_ref = parse_pr_reference(pr, repo)
 
+    owner_part, repo_part = (pr_ref.repo.split("/", 1) + [""])[:2]
+    if not repo_part:
+        repo_part = owner_part
+
     params = {
         "pr_number": pr_ref.number,
         "pr_url": pr_ref.url,
-        "repo": pr_ref.repo,
+        "user": owner_part,
+        "repo": repo_part,
     }
 
     render_prompt_template(

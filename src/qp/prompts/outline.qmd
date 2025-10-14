@@ -1,0 +1,11 @@
+  - Create a topic outline breaking down the major concepts needed to understand the following python object/feature: sheetmusic.apps.inventory.views.CycleCountDetailView
+  - Divide into five top level sections:
+      - Python
+      - Django
+      - Third-party packages
+      - Custom project code
+      - General sofware engineering / computer science
+  - Add references to the codebase using dotted path notation where appropriate
+  - Add links to official documentation if available. DO NOT SEARCH THE INTERNET.
+  - Add a brief TLDR summary with the underlying domain specific usage of the python object/feature
+  - Export to a markdown file in the `notes/` folder

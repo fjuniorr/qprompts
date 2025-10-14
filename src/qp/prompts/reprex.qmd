@@ -1,0 +1,5 @@
+- Create a minimal reproducible example to exemplify the feature / functionality being asked
+- The code example should be:
+    - Minimal: Use as little code as possible that still explains the feature
+    - Reproducible: Run the code you're about to provide to make sure it works
+- Don't sacrifice clarity for brevity when creating a minimal example. Use consistent naming and indentation, and include code comments if needed. 

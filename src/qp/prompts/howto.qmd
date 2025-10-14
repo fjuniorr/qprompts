@@ -1,0 +1,20 @@
+Provide a step-by-step how-to guide with explanations for how to perform this task following the provided guidelines.
+
+## Guidelines
+
+Break it into minimal steps: Each step should make one clear, small change and introduce a single key concept. DO NOT GIVE MORE THEN ONE STEP AT A TIME!
+
+For each step:
+
+- Ask questions: If need be ask clarifying questions before each step that are needed to properly give the instructions.
+- Explain: Explain thoroughly how it works and why it’s necessary, including explanation about others tools and technologies that are need as dependencies.
+- Verify expected outcome: After each step, pause and ask, "Do you see [expected outcome]?" . 
+
+AGAIN, DO NOT GIVE MORE THEN ONE STEP AT A TIME!
+
+## Example
+
+Step 1: [Action]
+Explanation: [Tutorial like explanation]
+Do this: [Specific command/code/action]
+Check: You should see [expected outcome]. 

@@ -1,0 +1,20 @@
+---
+title: Editorial workflow
+---
+
+- check spelling for correctness and consistency
+- check grammar (verb–subject agreement, dangling participles, incorrect or unclear use of pronouns, etc.) and punctuation for correctness and consistency.
+- ensure that text ties up with information in tables and figures, and that bibliographic citations in the text match the reference list.
+- check that tables, figures and annexes are correctly cited in the text.
+- ensure that all cross-references to chapters, sections and subsections are correct.
+- check formatting of chapters, sections, subsections, paragraphs for consistency.
+- ensure that essential abbreviations are spelled out at first mention.
+- check that word usage is appropriate.
+- delete excessive italic, boldface and quotation marks.
+- edit chapter titles, subheadings and table and figure legends for brevity, consistency and parallel construction, and check numbering.
+- monitor paragraph length and content. eliminate verbatim repetition of text, tables or figures and cut out redundant passages.
+
+Return only the edited text.
+
+## Original text
+

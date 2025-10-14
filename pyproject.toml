@@ -7,7 +7,7 @@ name = "prompts"
 version = "0.0.0-9001"
 description = "A package for notetaking inspired by the zettelkasten method"
 readme = "README.md"
-dependencies = ['typer', 'python-frontmatter']
+dependencies = ['typer', 'python-frontmatter', 'shellingham>=1.5']
 [project.scripts]
 qp = "qp.cli:app"
 
