@@ -2,10 +2,11 @@ from __future__ import annotations
 
 import json
 import subprocess
+import sys
 import tempfile
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 from urllib.parse import urlparse
 
 import frontmatter
@@ -87,6 +88,39 @@ def serialize_param_value(value: Any) -> str:
     return str(value)
 
 
+def copy_to_clipboard(text: str) -> bool:
+    """Attempt to copy text to the system clipboard."""
+
+    if not text:
+        return False
+
+    commands: List[List[str]] = []
+    platform = sys.platform
+    if platform == "darwin":
+        commands = [["pbcopy"]]
+    elif platform.startswith("linux"):
+        commands = [
+            ["wl-copy"],
+            ["xclip", "-selection", "clipboard"],
+            ["xsel", "--clipboard", "--input"],
+        ]
+    elif platform.startswith("win"):
+        commands = [["clip"]]
+    else:
+        return False
+
+    for command in commands:
+        try:
+            subprocess.run(command, input=text, check=True, text=True)
+            return True
+        except FileNotFoundError:
+            continue
+        except subprocess.CalledProcessError:
+            continue
+
+    return False
+
+
 def render_quarto(
     file_path: Path,
     params: Optional[Dict[str, Any]] = None,
@@ -114,8 +148,18 @@ def render_quarto(
                 continue
             command.extend(["-P", f"{name}:{serialize_param_value(value)}"])
 
+    capture_output = output == "-"
+
     try:
-        subprocess.run(command, check=True)
+        if capture_output:
+            result = subprocess.run(
+                command,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+        else:
+            subprocess.run(command, check=True)
     except FileNotFoundError:
         typer.secho(
             "Unable to find the 'quarto' executable. Install Quarto and ensure it is on your PATH.",
@@ -131,6 +175,25 @@ def render_quarto(
             err=True,
         )
         raise typer.Exit(code=exc.returncode)
+    else:
+        if capture_output:
+            stdout = result.stdout or ""
+            if stdout:
+                typer.echo(stdout, nl=False)
+                if not stdout.endswith("\n"):
+                    typer.echo()
+                if not copy_to_clipboard(stdout):
+                    typer.secho(
+                        "Unable to copy output to the clipboard (no clipboard command found).",
+                        fg=typer.colors.YELLOW,
+                        err=True,
+                    )
+
+            stderr = result.stderr or ""
+            if stderr:
+                typer.echo(stderr, nl=False, err=True)
+                if not stderr.endswith("\n"):
+                    typer.echo("", err=True)
 
 
 def render_prompt_template(
