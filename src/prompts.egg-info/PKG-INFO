@@ -5,3 +5,4 @@ Summary: A package for notetaking inspired by the zettelkasten method
 Description-Content-Type: text/markdown
 Requires-Dist: typer
 Requires-Dist: python-frontmatter
+Requires-Dist: shellingham>=1.5

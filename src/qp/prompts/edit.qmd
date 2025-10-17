@@ -1,20 +1,59 @@
 ---
 title: Editorial workflow
+engine: knitr
+params:
+  copy:
+    value: true
+    description: "Include copyediting tasks such as spelling, grammar, and style."
+  substantive:
+    value: false
+    description: "Include substantive editing tasks such as structure and argumentation."
 ---
 
-- check spelling for correctness and consistency
-- check grammar (verb–subject agreement, dangling participles, incorrect or unclear use of pronouns, etc.) and punctuation for correctness and consistency.
-- ensure that text ties up with information in tables and figures, and that bibliographic citations in the text match the reference list.
-- check that tables, figures and annexes are correctly cited in the text.
-- ensure that all cross-references to chapters, sections and subsections are correct.
-- check formatting of chapters, sections, subsections, paragraphs for consistency.
-- ensure that essential abbreviations are spelled out at first mention.
-- check that word usage is appropriate.
-- delete excessive italic, boldface and quotation marks.
-- edit chapter titles, subheadings and table and figure legends for brevity, consistency and parallel construction, and check numbering.
-- monitor paragraph length and content. eliminate verbatim repetition of text, tables or figures and cut out redundant passages.
+## Task
+
+- edit the provided text following the below instructions
+- use a casual/conversational but professional tone (internet slang is fine) aiming for "strong opinions, weakly held"
+
+```{r}
+#| echo: false
+copy_lines <- c(
+  "- check spelling for correctness and consistency",
+  "- check grammar (verb-subject agreement, dangling participles, unclear pronouns, punctuation) for correctness and consistency",
+  "- ensure that text aligns with information in tables and figures and that bibliographic citations match the reference list",
+  "- check that tables, figures, and annexes are correctly cited in the text",
+  "- ensure that all cross-references to chapters, sections, and subsections are correct",
+  "- check formatting of chapters, sections, and paragraphs for consistency",
+  "- ensure that essential abbreviations are spelled out at first mention",
+  "- check that word usage is appropriate",
+  "- delete excessive italics, boldface, and quotation marks"
+)
+
+substantive_lines <- c(
+  "- revise chapter titles, subheadings, and figure/table legends for brevity, consistency, and accurate numbering",
+  "- reorganize sections or paragraphs to improve logical flow and reader comprehension",
+  "- identify gaps in reasoning or evidence and suggest additions or clarifications",
+  "- eliminate redundant passages, verbatim repetition, and digressions while preserving essential content",
+  "- flag opportunities to tighten arguments, transitions, and narrative focus"
+)
+
+if (isTRUE(params$copy)) {
+  cat("### Copyediting\n\n")
+  cat(paste(copy_lines, collapse = "\n"))
+  cat("\n\n")
+}
+
+if (isTRUE(params$substantive)) {
+  cat("### Substantive editing\n\n")
+  cat(paste(substantive_lines, collapse = "\n"))
+  cat("\n\n")
+}
+
+if (!isTRUE(params$copy) && !isTRUE(params$substantive)) {
+  cat("- Follow the user instructions closely, making only the minimal edits they explicitly request.\n\n")
+}
+```
 
 Return only the edited text.
 
-## Original text
-
+## Input

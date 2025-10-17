@@ -51,15 +51,17 @@ wheels = [
 [[package]]
 name = "prompts"
 version = "0.0.0.post9001"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "python-frontmatter" },
+    { name = "shellingham" },
     { name = "typer" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "python-frontmatter" },
+    { name = "shellingham", specifier = ">=1.5" },
     { name = "typer" },
 ]
 
