@@ -1,0 +1,48 @@
+---
+title: Editorial workflow
+description: Generate editing guidance tailored to copy and/or substantive edits.
+params:
+  copy:
+    default: true
+    help: Include copyediting tasks such as spelling, grammar, and style.
+  substantive:
+    default: false
+    help: Include substantive editing tasks such as structure and argumentation.
+---
+
+## Task
+
+- edit the provided text following the below instructions
+- use a casual/conversational but professional tone (internet slang is fine) aiming for "strong opinions, weakly held"
+
+{% if copy %}
+### Copyediting
+
+- check spelling for correctness and consistency
+- check grammar (verb-subject agreement, dangling participles, unclear pronouns, punctuation) for correctness and consistency
+- ensure that text aligns with information in tables and figures and that bibliographic citations match the reference list
+- check that tables, figures, and annexes are correctly cited in the text
+- ensure that all cross-references to chapters, sections, and subsections are correct
+- check formatting of chapters, sections, and paragraphs for consistency
+- ensure that essential abbreviations are spelled out at first mention
+- check that word usage is appropriate
+- delete excessive italics, boldface, and quotation marks
+{% endif %}
+
+{% if substantive %}
+### Substantive editing
+
+- revise chapter titles, subheadings, and figure/table legends for brevity, consistency, and accurate numbering
+- reorganize sections or paragraphs to improve logical flow and reader comprehension
+- identify gaps in reasoning or evidence and suggest additions or clarifications
+- eliminate redundant passages, verbatim repetition, and digressions while preserving essential content
+- flag opportunities to tighten arguments, transitions, and narrative focus
+{% endif %}
+
+{% if not copy and not substantive %}
+- Follow the user instructions closely, making only the minimal edits they explicitly request.
+{% endif %}
+
+Return only the edited text.
+
+## Input

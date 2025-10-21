@@ -1,0 +1,40 @@
+---
+title: Review pull request
+description: Render a pull request review packet with optional issue context.
+params:
+  pr_number: ""
+  pr_url: ""
+  user: "Ficks-Music"
+  repo: "ficks"
+---
+## Pull request {{ user }}/{{ repo }} PR#{{ pr_number }}
+
+```text
+{{ pr_overview }}
+```
+
+```text
+{{ pr_comments }}
+```
+
+{% if issue %}
+## Issue {{ issue.user }}/{{ issue.repo }} #{{ issue.number }}
+
+```text
+{{ issue.overview }}
+```
+
+```text
+{{ issue.comments }}
+```
+{% endif %}
+
+## Task
+
+- Perform a code review with an analysis of
+
+```text
+{{ git_log }}
+```
+
+- Give me a write-up that can be posted back to the original pull request

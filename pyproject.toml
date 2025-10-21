@@ -7,9 +7,9 @@ name = "prompts"
 version = "0.0.0-9001"
 description = "A package for notetaking inspired by the zettelkasten method"
 readme = "README.md"
-dependencies = ['typer', 'python-frontmatter', 'shellingham>=1.5']
+dependencies = ['typer', 'python-frontmatter', 'Jinja2>=3.1', 'shellingham>=1.5']
 [project.scripts]
 qp = "qp.cli:app"
 
 [tool.setuptools.package-data]
-"qp.prompts" = ["*.qmd"]
+"qp.templates" = ["*.md.jinja"]
