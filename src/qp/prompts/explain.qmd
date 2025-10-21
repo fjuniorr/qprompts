@@ -12,7 +12,7 @@ title: Explanation
 
 - Admit opinion and perspective: think of explanation as discussion: discussions can even consider and weigh up contrary opinions.
 
-- Use minimal reproducible examples to ground the explanations into the practical realm
+- Use minimal reproducible examples that can be executed as is to ground the explanations into the practical realm
 
 ## Input
 

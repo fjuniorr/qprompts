@@ -28,4 +28,11 @@ gh pr view --comments "$PR_URL"
 
 ## Task
 
-What is the most relevant insight for this pull request?
+- Perform a code review with an analysis of
+
+```{bash}
+#| echo: false
+git lg master..HEAD
+```
+
+- Give me a write-up that can be posted back to the original pull request

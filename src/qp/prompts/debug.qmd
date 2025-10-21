@@ -6,7 +6,8 @@ title: Troubleshoot and diagnose bug
 
 - Locate the bug
 - Identify the root cause
-- Explain the root cause using a minimal reproducible example
+- Create a minimal reproducible example (reprex) that can be executed as is
+- Explain the root cause using the reprex
 - Dot not change the existing code and tests 
 
 ## Input
