@@ -1,0 +1,18 @@
+---
+title: Review pull request
+description: Render an existing GitHub pull request with its discussion for ad-hoc analysis.
+params:
+  pr_number: ""
+  pr_url: ""
+  user: "Ficks-Music"
+  repo: "ficks"
+---
+# Pull request {{ user }}/{{ repo }} PR#{{ pr_number }}
+
+{{ pr_overview }}
+
+## Comments
+
+{{ pr_comments }}
+
+# Task

@@ -19,7 +19,7 @@ DEFAULT_FORMAT = "commonmark"
 DEFAULT_OUTPUT = "-"
 SUPPORTED_FORMATS = {DEFAULT_FORMAT, "markdown"}
 TEMPLATE_SUFFIX = ".md.jinja"
-RESERVED_PROMPTS = {"review"}
+RESERVED_PROMPTS = {"review", "issue", "pr"}
 
 
 @dataclass

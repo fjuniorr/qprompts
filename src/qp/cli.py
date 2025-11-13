@@ -379,3 +379,123 @@ def _git_ref_exists(ref: str) -> bool:
         check=False,
     )
     return result.returncode == 0
+@app.command("issue")
+def issue(
+    reference: str = typer.Argument(
+        ...,
+        help="Issue number, owner/repo#number, or GitHub URL to inspect.",
+    ),
+    repo: str = typer.Option(
+        "Ficks-Music/ficks",
+        "--repo",
+        help="Repository used when --issue is a bare number.",
+    ),
+    to: str = typer.Option(
+        DEFAULT_FORMAT,
+        "--to",
+        help="Output format for the rendered prompt (default: commonmark).",
+    ),
+    output: str = typer.Option(
+        DEFAULT_OUTPUT,
+        "--output",
+        help="Where the rendered prompt is written ('-' streams to stdout).",
+    ),
+) -> None:
+    """Render the issue prompt with the selected GitHub issue."""
+
+    issue_ref = parse_issue_reference(reference, repo)
+
+    if to not in SUPPORTED_FORMATS:
+        typer.secho(
+            f"Unsupported format '{to}'. Supported formats: {', '.join(sorted(SUPPORTED_FORMATS))}.",
+            fg=typer.colors.RED,
+            err=True,
+        )
+        raise typer.Exit(code=1)
+
+    owner_part, repo_part = (issue_ref.repo.split("/", 1) + [""])[:2]
+    if not repo_part:
+        repo_part = owner_part
+
+    params = {
+        "issue_number": issue_ref.number,
+        "issue_url": issue_ref.url,
+        "user": owner_part,
+        "repo": repo_part,
+        "issue_overview": _run_text_command(
+            ["gh", "issue", "view", issue_ref.url],
+            "retrieving issue details",
+        ),
+        "issue_comments": _run_text_command(
+            ["gh", "issue", "view", issue_ref.url, "--comments"],
+            "retrieving issue discussion",
+        ),
+    }
+
+    render_prompt_template(
+        "issue.md.jinja",
+        params=params,
+        fmt=to,
+        output=output,
+    )
+
+
+@app.command("pr")
+def pr(
+    reference: str = typer.Argument(
+        ...,
+        help="PR number, owner/repo#number, or GitHub URL to inspect.",
+    ),
+    repo: str = typer.Option(
+        "Ficks-Music/ficks",
+        "--repo",
+        help="Repository used when PR reference is a bare number.",
+    ),
+    to: str = typer.Option(
+        DEFAULT_FORMAT,
+        "--to",
+        help="Output format for the rendered prompt (default: commonmark).",
+    ),
+    output: str = typer.Option(
+        DEFAULT_OUTPUT,
+        "--output",
+        help="Where the rendered prompt is written ('-' streams to stdout).",
+    ),
+) -> None:
+    """Render the PR prompt with the selected GitHub pull request."""
+
+    pr_ref = parse_pr_reference(reference, repo)
+
+    if to not in SUPPORTED_FORMATS:
+        typer.secho(
+            f"Unsupported format '{to}'. Supported formats: {', '.join(sorted(SUPPORTED_FORMATS))}.",
+            fg=typer.colors.RED,
+            err=True,
+        )
+        raise typer.Exit(code=1)
+
+    owner_part, repo_part = (pr_ref.repo.split("/", 1) + [""])[:2]
+    if not repo_part:
+        repo_part = owner_part
+
+    params = {
+        "pr_number": pr_ref.number,
+        "pr_url": pr_ref.url,
+        "user": owner_part,
+        "repo": repo_part,
+        "pr_overview": _run_text_command(
+            ["gh", "pr", "view", pr_ref.url],
+            "retrieving pull request details",
+        ),
+        "pr_comments": _run_text_command(
+            ["gh", "pr", "view", pr_ref.url, "--comments"],
+            "retrieving pull request discussion",
+        ),
+    }
+
+    render_prompt_template(
+        "pr.md.jinja",
+        params=params,
+        fmt=to,
+        output=output,
+    )

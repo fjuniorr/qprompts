@@ -1,0 +1,18 @@
+---
+title: Review issue
+description: Render an existing GitHub issue with its discussion for ad-hoc analysis.
+params:
+  issue_number: ""
+  issue_url: ""
+  user: "Ficks-Music"
+  repo: "ficks"
+---
+# Issue {{ user }}/{{ repo }} #{{ issue_number }}
+
+{{ issue_overview }}
+
+## Comments
+
+{{ issue_comments }}
+
+# Task
