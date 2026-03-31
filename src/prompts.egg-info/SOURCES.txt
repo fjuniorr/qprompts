@@ -15,11 +15,14 @@ src/qp/templates/describe.md.jinja
 src/qp/templates/edit.md.jinja
 src/qp/templates/explain.md.jinja
 src/qp/templates/howto.md.jinja
+src/qp/templates/issue.md.jinja
 src/qp/templates/outline.md.jinja
+src/qp/templates/pr.md.jinja
 src/qp/templates/refactor.md.jinja
 src/qp/templates/refine.md.jinja
 src/qp/templates/reprex.md.jinja
 src/qp/templates/review.md.jinja
+src/qp/templates/rewrite.md.jinja
 src/qp/templates/summarize.md.jinja
 src/qp/templates/tutorial.md.jinja
 src/qp/templates/write.md.jinja
